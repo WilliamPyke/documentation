@@ -18,7 +18,7 @@ On Mezo, MUSD and Borrow provide solutions to several lending market challenges:
 
 * Permissionless access to a credit against up to 90% of your BTC holdings. Keep your BTC, tap into your Bitcoin equity, and pay your loan back whenever.
 * Loans are created onchain and [publicly verifiable 24/7](https://explorer.test.mezo.org/address/0x118917a40FAF1CD7a13dB0Ef56C86De7973Ac503?tab=txs&ref=blog.mezo.org). Close your position whenever you want to receive your underlying Bitcoin collateral.
-* MUSD borrow rates are fixed for the life of the loan, starting at 1-5%. Lock in your low rate, and don’t worry about the the market.
+* MUSD borrow rates are fixed for the life of the loan, starting at 1-5%. Lock in your low rate, and don’t worry about the market.
 
 This documentation provides details about the MUSD architecture, how it fits into the Mezo ecosystem, risks and mitigations, and guides through how to access MUSD. 
 
