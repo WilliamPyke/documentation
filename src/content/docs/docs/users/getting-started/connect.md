@@ -16,8 +16,8 @@ If Chainlist does not work, add the network manually using the network details b
 
 * Public JSON RPC Endpoints:
   * Boar:
-    * HTTPS: `https://jsonrpc-mezo.boar.network`
-    * WSS: `wss://jsonrpcws-mezo.boar.network`
+    * HTTPS: `https://rpc-http.mezo.boar.network`
+    * WSS: `wss://rpc-ws.mezo.boar.network`
   * Imperator:
     * HTTPS: `https://rpc_evm-mezo.imperator.co`
     * WSS: `wss://ws_evm-mezo.imperator.co`

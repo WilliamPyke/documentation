@@ -44,8 +44,8 @@ We value your input as you build on Mezo. Please use the resources below for sup
 
 * Public JSON RPC Endpoints:
   * Boar:
-    * HTTPS: `https://jsonrpc-mezo.boar.network`
-    * WSS: `wss://jsonrpcws-mezo.boar.network`
+    * HTTPS: `https://rpc-http.mezo.boar.network`
+    * WSS: `wss://rpc-ws.mezo.boar.network`
     * For higher rate limits get your free API key at [boar.network/mezo](https://boar.network/mezo). Enterprise plan available - contact [hello@boar.network](hello@boar.network) to get started.
   * Imperator:
     * HTTPS: `https://rpc_evm-mezo.imperator.co`
