@@ -4,7 +4,7 @@ description: Deep dive into the system design and core terminology of MUSD on Me
 topic: users
 ---
 
-The MUSD system consists of four main contract groups:
+The [MUSD](https://mezo.org/feature/musd) system consists of four main contract groups:
 
 * Token (MUSD): The stablecoin at the heart of the system, designed to maintain a peg to USD.
 * Core Protocol: Handles the main operations like opening/closing positions, managing collateral, and maintaining system stability
