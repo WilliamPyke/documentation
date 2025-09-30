@@ -6,7 +6,7 @@ description: >-
 topic: users
 ---
 
-Before you [Borrow and Mint MUSD](./mint-musd.md), understand the core concepts for how the MUSD stablecoin works.
+Before you [Borrow and Mint MUSD](./mint-musd.md), understand the core concepts for how the [MUSD stablecoin](https://mezo.org/feature/musd) works.
 
 ## Borrow limits
 
