@@ -8,7 +8,7 @@ topic: users
 
 MUSD is a permissionless stablecoin 100% backed by Bitcoin reserves and designed to maintain a 1:1 peg with the U.S. dollar. It is the native stablecoin on Mezo, accessible via Mezo’s ‘Borrow’ feature or decentralized exchanges on Mezo Network. 
 
-Anyone can mint MUSD by depositing BTC into Mezo borrow, thus creating a loan position. Bitcoin collateral for MUSD positions is publicly verifiable onchain, and proof-of-reserves are viewable 24-7. For more details on the collateral management, see the “Collateral Management” section. Users can close their MUSD positions by returning the borrowed MUSD and accumulated interest to receive their initial Bitcoin collateral.
+Anyone can mint MUSD by [depositing BTC into Mezo borrow, thus creating a loan position](https://mezo.org/feature/borrow). Bitcoin collateral for MUSD positions is publicly verifiable onchain, and proof-of-reserves are viewable 24-7. For more details on the collateral management, see the “Collateral Management” section. Users can close their MUSD positions by returning the borrowed MUSD and accumulated interest to receive their initial Bitcoin collateral.
 
 You must deposit a minimum of \$1800 US worth of BTC or other supported tokens as collateral in order to create a loan.
 
