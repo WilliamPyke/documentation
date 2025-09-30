@@ -7,7 +7,7 @@ topic: users
 ---
 
 ## Overview
-When you borrow MUSD using your Bitcoin as collateral, you create a loan position (also called a "Trove"). Two key system events can affect your loan:
+When you [borrow MUSD](https://mezo.org/feature/musd) using your Bitcoin as collateral, you create a loan position (also called a "Trove"). Two key system events can affect your loan:
 
 - **Liquidation**: A forced closure of your loan that happens only if its health, measured by the collateral ratio, drops below a critical minimum of 110%. In a liquidation, you lose your collateral.
 - **Redemption**: When other users exchange MUSD for BTC from the system to help keep the MUSD price at \$1. This can affect your loan even if it's healthy (above 110%), but it is not a loss. It pays down your debt and makes your loan safer.
