@@ -14,7 +14,6 @@ topic: users
 
 ## mezod
 
-- [OtterSec mezod Audit](/docs/audits/2025-03-18%20-%20OtterSec%20-%20mezod.pdf)
 - [Halborn mezod Audit - 2024](/docs/audits/2024-10-18%20-%20Halborn%20-%20mezod.pdf)
 - [Halborn mezod Audit - 2025](/docs/audits/2025-01-31%20-%20Halborn%20-%20mezod.pdf)
 
@@ -26,3 +25,5 @@ topic: users
 ## Bridge
 - [Thesis Defense Bridge Audit](/docs/audits/2025-09-10%20-%20Thesis%20Defense%20-%20MezoBridge%20contract.pdf)
 - [Halborn Bridge Audit](/docs/audits/2025-09-18%20-%20Halborn%20-%20Mezo%20Native%20Bridge.pdf)
+- [OtterSec Bridge Audit](/docs/audits/2025-03-18%20-%20OtterSec%20-%20Bridge%20Audit.pdf)
+
