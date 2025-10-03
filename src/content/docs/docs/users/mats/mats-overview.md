@@ -12,25 +12,17 @@ mats align incentives across the entire Mezo ecosystem and beyond, rewarding rea
 
 ## How to Earn mats
 
-The following actions will earn you mats, which can be claimed today via the Rewards Hub in the Mezo app. Head to mezo.org/rewards to track your earnings and claim them every week.
+The following actions will earn you mats, which can be claimed today via the Rewards Hub in the Mezo app. Head to [mezo.org/rewards](https://mezo.org/rewards) to track your earnings and claim them every week. Actions labeled "Coming Soon" will be retroactively rewarded and do not currently contribute to your mats balance in your account.
 
-### **Vault Deposits**
+- Vault Deposits
 Deposit assets into Mezo Vaults (BTC Vault, MUSD Vault) to earn mats based on deposit size and duration.
-
-### **Providing Liquidity to Mezo Pools**
+- Providing Liquidity to Mezo Pools
 Supply tokens to trading pairs on Mezo Pools to earn mats from liquidity provision.
-
-## Coming soon
-
-The following actions will be retroactively rewarded and do not currently contribute to your mats balance in your account.
-
-### **Swapping on Mezo**
+- Swapping on Mezo (Coming Soon)
 Execute swaps between BTC, MUSD, USDC, USDT, and other assets. Every swap transaction earns mats.
-
-### **Minting MUSD**
+- Minting MUSD (Coming Soon)
 Open and maintain MUSD loan positions.
-
-### **Spending MUSD in the Mezo Market**
+- Spending MUSD in the Mezo Market (Coming Soon)
 Use MUSD for purchases through integrated partners like Bitrefill to earn mats while spending.
 
 ---
