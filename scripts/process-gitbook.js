@@ -384,6 +384,7 @@ class GitbookProcessor {
       .replace(/[-_]/g, ' ')                    // Replace dashes and underscores with spaces
       .replace(/\b\w/g, l => l.toUpperCase())   // Capitalize first letter of each word
       .replace(/\bmusd\b/gi, 'MUSD')            // Special case for MUSD
+      .replace(/\bmats\b/gi, 'mats')            // Special case for mats (keep lowercase)
       .replace(/\bbtc\b/gi, 'BTC')              // Special case for BTC
       .replace(/\bstbtc\b/gi, 'stBTC')          // Special case for stBTC
       .replace(/\btbtc\b/gi, 'tBTC')            // Special case for tBTC
