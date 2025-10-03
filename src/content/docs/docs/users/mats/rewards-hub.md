@@ -66,7 +66,7 @@ No. Rewards must be manually claimed through the Rewards Hub.
 Accrued rewards remain claimable even after removing liquidity, but pool rewards still expire after 7 days.
 
 **Can I claim partial rewards?**  
-No. Claims execute for all pending rewards in the selected section (Pools or Vaults).
+You can claim partial rewards for pools. From the rewards hub, click "View Position" to navigate to the specific pool(s) that you have deposited to. From that page, you are able to claim those specific rewards. If you click the "Claim all/Claim remaining" button at the top of the rewards hub, it will claim mats for all of your pools positions.
 
 **Why can't I see any rewards?**  
 Confirm your wallet has participated in eligible activities and that assets are currently deposited or positions are active.
