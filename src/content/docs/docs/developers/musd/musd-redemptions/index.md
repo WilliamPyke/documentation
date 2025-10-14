@@ -6,261 +6,151 @@ topic: developers
 # How to Redeem MUSD on Mezo
 
 ## Quick Overview
-Redeeming lets you burn MUSD to receive BTC at a 1:1 ratio (minus a 0.75% redemption fee). The system redeems from the trove with the lowest collateral ratio first.
+Redeeming lets you burn 1 MUSD to recieve $1 in BTC (minus a 0.75% redemption fee and gas fees). The system redeems from the trove with the lowest collateral ratio first.
 
 ---
 
-## Step-by-Step Guide
+## Prerequisites
 
-### 1. Navigate to the Contract
-Go to the **TroveManager** contract on your block explorer:
-- **Mainnet**: `0xa57c03F2E0fF9F059802eEE44CcFf090a7DD4189`
-- **Testnet**: `0xE47c80e8c23f6B4A1aE41c34837a0599D5D16bb0`
+Before you start, verify:
 
-Click on the **"Write Contract"** or **"Write as Proxy"** tab.
-
-### 2. Find the `redeemCollateral` Function
-Scroll to function **`11. redeemCollateral`**
-
-### 3. Fill in the Parameters
-
-Here's what each field means and how to fill it:
-
-#### **_amount (uint256)**
-The amount of MUSD you want to redeem **in wei** (18 decimals).
-
-**Examples:**
-- To redeem 100 MUSD: `100000000000000000000` (100 × 10^18)
-- To redeem 1,000 MUSD: `1000000000000000000000` (1000 × 10^18)
-- To redeem 5,005 MUSD: `5005000000000000000000` (5005 × 10^18)
-
-**Quick conversion:** Amount × 1000000000000000000
-
-#### **_firstRedemptionHint (address)**
-The address of the first trove to redeem from. 
-
-**How to get it:**
-1. Go to the **HintHelpers** contract:
-   - Mainnet: `0x82AB5F02993bF312d9acA03157f26FeBEBc76108`
-   - Testnet: `0x4e4cBA3779d56386ED43631b4dCD6d8EacEcBCF6`
-2. Call `getRedemptionHints()` with:
-   - `_amount`: Same amount as above
-   - `_price`: Current BTC price (get from PriceFeed contract)
-   - `_maxIterations`: `50` (good default)
-3. Copy the `firstRedemptionHint` value returned
-
-**Shortcut:** Use `0x0000000000000000000000000000000000000000` if you're unsure - the contract will find it automatically (but uses more gas).
-
-#### **_upperPartialRedemptionHint (address)**
-#### **_lowerPartialRedemptionHint (address)**
-These tell the system where to reinsert a partially redeemed trove in the sorted list.
-
-**How to get them:**
-1. Get `partialRedemptionHintNICR` from HintHelpers (see above)
-2. Go to the **SortedTroves** contract:
-   - Mainnet: `0x19868D388668A8e248784E78b0C644b517feBaAE`
-   - Testnet: `0x722E4D24FD6Ff8b0AC679450F3D91294607268fA`
-3. Call `findInsertPosition()` with:
-   - `_NICR`: The `partialRedemptionHintNICR` value
-   - `_prevId`: Your wallet address
-   - `_nextId`: Your wallet address
-4. Copy the two addresses returned
-
-**Shortcut:** Use your wallet address for both if unsure (less optimal but works).
-
-#### **_partialRedemptionHintNICR (uint256)**
-The nominal interest rate that the last trove will have after partial redemption.
-
-**How to get it:** From HintHelpers `getRedemptionHints()` - it returns this value.
-
-**Shortcut:** Use `1100000000000000000000` (110% in 18 decimals) as a safe default.
-
-#### **_maxIterations (uint256)**
-Maximum number of troves to loop through. Prevents running out of gas.
-
-**Recommended values:**
-- `0` = unlimited (only use for small redemptions)
-- `10` = safe for most redemptions
-- `50` = for large redemptions
-- `100` = maximum recommended
+1. **System is accepting redemptions**: Go to TroveManager → "Read as Proxy" → call `getTCR()` with current BTC price. Must show ≥ `1100000000000000000` (110%)
+2. **You have MUSD**: Check your balance on the MUSD token contract
+3. **Get current BTC price**: Go to PriceFeed → "Read as Proxy" → call `fetchPrice()`
+4. **Get correct contract addresses**: See contract addresses at the bottom.
 
 ---
 
-## Complete Example: Redeeming 100 MUSD
+## Step-by-Step Instructions
 
-Let's say you want to redeem 100 MUSD:
+### 1. Go to TroveManager Contract
+Open the TroveManager contract in your block explorer and click the **"Write as Proxy"** tab.
 
-### Option A: Using Hints (Optimal - Lower Gas)
+### 2. Find Function 11: `redeemCollateral`
 
-**Step 1:** Get hints from HintHelpers
-Call getRedemptionHints with:
+You'll see 6 input fields. Here's how to fill them:
 
-_amount: 100000000000000000000
-_price: [current BTC price from PriceFeed]
-_maxIterations: 50
+---
 
-Returns:
+## Option A: Quick & Simple (Higher Gas)
 
-firstRedemptionHint: 0xABC...123
-partialRedemptionHintNICR: 1234567890123456789000
-truncatedAmount: 100000000000000000000
+Use this if you want to redeem quickly without calculating hints.
 
+- `_amount`: [your amount in wei - see conversion below]   
+- `_firstRedemptionHint`: 0x0000000000000000000000000000000000000000   
+- `_upperPartialRedemptionHint`: [your wallet address]   
+- `_lowerPartialRedemptionHint`: [your wallet address]   
+- `_partialRedemptionHintNICR`: 1100000000000000000000   
+- `_maxIterations`: 10
 
-**Step 2:** Get position hints from SortedTroves
-Call findInsertPosition with:
+**Converting MUSD to Wei:**
+- 100 MUSD = `100000000000000000000`
+- 5,005 MUSD = `5005000000000000000000`
 
-_NICR: 1234567890123456789000
-_prevId: [your address]
-_nextId: [your address]
+**Formula**: Your amount × 1000000000000000000
 
-Returns:
+---
 
-upper: 0xDEF...456
-lower: 0xGHI...789
+## Option B: With Hints (Lower Gas)
 
+Use this to save on gas costs.
 
-**Step 3:** Call redeemCollateral
-_amount: 100000000000000000000
-_firstRedemptionHint: 0xABC...123
-_upperPartialRedemptionHint: 0xDEF...456
-_lowerPartialRedemptionHint: 0xGHI...789
-_partialRedemptionHintNICR: 1234567890123456789000
-_maxIterations: 50
+### Step 1: Get Redemption Hints
 
-### Option B: Quick & Simple (Higher Gas)
-_amount: 100000000000000000000
-_firstRedemptionHint: 0x0000000000000000000000000000000000000000
-_upperPartialRedemptionHint: [your wallet address]
-_lowerPartialRedemptionHint: [your wallet address]
-_partialRedemptionHintNICR: 1100000000000000000000
-_maxIterations: 10
+Go to HintHelpers → "Read as Proxy" → `getRedemptionHints()`
+
+Fill in:
+- `_amount`: Your amount in wei (same as above)
+- `_price`: Current BTC price from PriceFeed
+- `_maxIterations`: 50
+
+Copy the returned values:
+- `firstRedemptionHint`
+- `partialRedemptionHintNICR`
+
+### Step 2: Get Position Hints
+
+Go to SortedTroves → "Read as Proxy" → `findInsertPosition()`
+
+Fill in:
+- `_NICR`: Use the `partialRedemptionHintNICR` from Step 1
+- `_prevId`: Your wallet address
+- `_nextId`: Your wallet address
+
+Copy the returned values:
+- `upperHint`
+- `lowerHint`
+
+### Step 3: Call redeemCollateral
+
+Go back to TroveManager → "Write as Proxy" → `redeemCollateral`
+
+- `_amount`: [your amount in wei]
+- `_firstRedemptionHint`: [from Step 1]
+- `_upperPartialRedemptionHint`: [upperHint from Step 2]
+- `_lowerPartialRedemptionHint`: [lowerHint from Step 2]
+- `_partialRedemptionHintNICR`: [from Step 1]
+- `_maxIterations`: 50
 
 ---
 
 ## What You'll Receive
 
-**If redeeming 100 MUSD:**
+**Example: Redeeming 100 MUSD**
 - You burn: 100 MUSD
-- You receive: ~$99.25 worth of BTC (0.75% fee goes to PCV)
-- Redemption fee: ~$0.75 worth of BTC
+- You receive: $99.25 worth of BTC (0.75% fee goes to protocol)
 
-**Actual BTC received** = (100 MUSD ÷ BTC Price) × 0.9925
-
----
-
-## Before You Redeem - Important Checks
-
-### Check Prerequisites
-
-**1. Check the TCR (Total Collateral Ratio)**
-- Go to TroveManager contract → Read functions
-- Call `getTCR()` with current BTC price
-- **Must be ≥ 110%** (shown as `1100000000000000000` in wei)
-- If below 110%, redemptions are disabled
-
-**2. Check Your MUSD Balance**
-- Go to MUSD token contract:
-  - Mainnet: `0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186`
-  - Testnet: `0x118917a40FAF1CD7a13dB0Ef56C86De7973Ac503`
-- Call `balanceOf([your address])`
-- Ensure you have enough MUSD
-
-**3. Check Current Redemption Fee**
-- Go to BorrowerOperations:
-  - Mainnet: `0x44b1bac67dDA612a41a58AAf779143B181dEe031`
-  - Testnet: `0xCdF7028ceAB81fA0C6971208e83fa7872994beE5`
-- Call `getRedemptionRate()` with your redemption amount
-- Returns fee in basis points (75 = 0.75%)
-
-### Useful View Functions
-
-**See how much you'll get:**
-HintHelpers.getRedemptionHints(amount, price, maxIterations)
-
-Check the truncatedAmount - this is max you can actually redeem
-
-
-**Check if any troves are redeemable:**
-SortedTroves.getLast()
-
-Get the last trove (lowest collateral ratio)
-TroveManager.getCurrentICR(troveAddress, currentPrice)
-If ICR < 110%, that trove can't be redeemed from
-
+**Formula**: (Your MUSD Amount ÷ BTC Price) × 0.9925 = BTC received
 
 ---
 
-## Common Issues & Solutions
+## Common Issues
 
-### "Cannot redeem when TCR < MCR"
-**Solution:** Wait until the Total Collateral Ratio is above 110%. Check with `getTCR()`.
+**"Cannot redeem when TCR < MCR"**
+→ System TCR is below 110%. Wait until it recovers.
 
-### "Unable to redeem any amount"
-**Solution:** All troves have collateral ratios below 110%. Try again later.
+**"Unable to redeem any amount"**
+→ No troves available with collateral ratio above 110%.
 
-### Transaction fails with "out of gas"
-**Solution:** 
-- Reduce `_maxIterations` to a smaller number (try 10)
-- Or split your redemption into multiple smaller transactions
+**Transaction runs out of gas**
+→ Lower `_maxIterations` to 10 or split into smaller redemptions.
 
-### Hints are outdated
-**Solution:** Generate fresh hints immediately before calling redeemCollateral. If someone else redeems between getting hints and your transaction, your hints become stale.
+**Transaction reverts unexpectedly**
+→ Get fresh hints and try again. Someone may have redeemed before you.
 
-### Received less BTC than expected
-**Explanation:** This is normal if you're partially redeeming the last trove and it would go below the 1,800 MUSD minimum. The system returns unused MUSD to you.
+**Received less than expected**
+→ Check the `Redemption` event in your transaction. Some MUSD may have been returned if the last trove would go below 1,800 MUSD minimum.
 
 ---
 
-## Gas Optimization Tips
+## Tips
 
-1. **Use fresh hints** - Always get hints right before redeeming for best gas efficiency
-2. **Set appropriate maxIterations** - Higher = more gas, but completes larger redemptions
-3. **Redeem during low activity** - Less chance of hints becoming stale
-4. **Consider breaking large redemptions** into chunks of 10-20 troves worth
-
----
-
-## After Redemption
-
-**What happens:**
-1. Your MUSD is burned from your wallet
-2. BTC is sent to your wallet (minus 0.75% fee)
-3. Redemption fee (in BTC) is sent to the PCV contract
-4. Redeemed troves have their debt cancelled and collateral reduced
-5. If a trove is fully redeemed, excess collateral goes to CollSurplusPool
-
-**Check your transaction:**
-- Look for the `Redemption` event in the transaction logs
-- You'll see: amount redeemed, collateral drawn, and fee paid
+- **Generate hints immediately before redeeming** - They become stale if someone else redeems first
+- **Use Option A for small amounts** (< $10,000) - The higher gas cost is negligible
+- **Use Option B for large amounts** - Saves significant gas on big redemptions
+- **Set higher maxIterations for larger redemptions**:
+  - Small (< 10 troves): 10
+  - Medium (10-30 troves): 50
+  - Large (30+ troves): 100
 
 ---
 
 ## Contract Addresses
 
-### Mainnet
 | Contract | Address |
 |----------|---------|
-| TroveManager | `0xa57c03F2E0fF9F059802eEE44CcFf090a7DD4189` |
-| HintHelpers | `0x82AB5F02993bF312d9acA03157f26FeBEBc76108` |
-| SortedTroves | `0x19868D388668A8e248784E78b0C644b517feBaAE` |
+| TroveManager | `0x94AfB503dBca74aC3E4929BACEeDfCe19B93c193` |
+| HintHelpers | `0xD267b3bE2514375A075fd03C3D9CBa6b95317DC3` |
+| SortedTroves | `0x8C5DB4C62BF29c1C4564390d10c20a47E0b2749f` |
 | BorrowerOperations | `0x44b1bac67dDA612a41a58AAf779143B181dEe031` |
 | PriceFeed | `0xc5aC5A8892230E0A3e1c473881A2de7353fFcA88` |
 | MUSD Token | `0xdD468A1DDc392dcdbEf6db6e34E89AA338F9F186` |
 
-### Testnet
-| Contract | Address |
-|----------|---------|
-| TroveManager | `0xE47c80e8c23f6B4A1aE41c34837a0599D5D16bb0` |
-| HintHelpers | `0x4e4cBA3779d56386ED43631b4dCD6d8EacEcBCF6` |
-| SortedTroves | `0x722E4D24FD6Ff8b0AC679450F3D91294607268fA` |
-| BorrowerOperations | `0xCdF7028ceAB81fA0C6971208e83fa7872994beE5` |
-| PriceFeed | `0x86bCF0841622a5dAC14A313a15f96A95421b9366` |
-| MUSD Token | `0x118917a40FAF1CD7a13dB0Ef56C86De7973Ac503` |
+All addresses are proxy contracts. Always use "Read as Proxy" or "Write as Proxy" tabs.
 
 ---
 
 ## Need Help?
 
-- **Check transaction status** on the block explorer
-- **View events** in your transaction to see exactly what happened
-- **Join our Discord** for real-time support: [INSERT LINK]
+- Check your transaction on the block explorer to see events and error messages
+- Join our Discord and open a ticket: https://discord.com/invite/mezo
