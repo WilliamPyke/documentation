@@ -33,7 +33,7 @@ Mezo had an early depositor program that allowed users to deposit and lock BTC, 
 
 In addition to the early depositor program, matsnet (Mezo's official testnet) gave users another chance to earn mats through various onchain and community activations. 
 
-![matnet vs mainnet mats](/public/docs/images/mainnet/matnet-vs-mainnet-mats.png)
+![matnet vs mainnet mats](/docs/images/mainnet/matnet-vs-mainnet-mats.png)
 
 Users' mats balances from both of these campaigns are represented on the current Leaderboard, viewable in the Rewards tab of Mezo. To check your balance, head to https://mezo.org/rewards. There is currently no way to earn mats that contribute to your matsnet or early deposit totals, and your position on the old leaderboard will remain fixed.
 
