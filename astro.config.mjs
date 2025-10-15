@@ -26,6 +26,7 @@ export default defineConfig({
 			components: {
 				Header: './src/overrides/Header.astro',
 				Footer: './src/overrides/Footer.astro',
+				SocialIcons: './src/overrides/SocialIcons.astro',
 			},
 			customCss: [
 				'./src/styles/custom.css',
