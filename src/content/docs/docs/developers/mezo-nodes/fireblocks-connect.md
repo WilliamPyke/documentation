@@ -1,6 +1,8 @@
 ---
 title: Connect Fireblocks to Mezo
-description: Step-by-step guide to connect the Fireblocks DeFi Browser Extension with the Mezo dApp.
+description: >-
+  Step-by-step guide to connect the Fireblocks DeFi Browser Extension with the
+  Mezo dApp.
 topic: developers
 ---
 

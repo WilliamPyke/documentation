@@ -218,7 +218,8 @@ export default defineConfig({
                         label: 'Mezo Nodes',
                         collapsed: true,
                         items: [
-                              'docs/developers/mezo-nodes'
+                              'docs/developers/mezo-nodes',
+                              'docs/developers/mezo-nodes/fireblocks-connect'
                         ]
                   },
                   {

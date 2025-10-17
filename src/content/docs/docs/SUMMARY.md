@@ -54,6 +54,7 @@ topic: users
     * [FAQs](developers/getting-started/FAQs.md)
   * [mezo-nodes](developers/mezo-nodes/README.md)
     * [Overview](developers/mezo-nodes/index.md)
+    * [Connect Fireblocks to Mezo](developers/mezo-nodes/fireblocks-connect.md)
   * [architecture](developers/architecture/README.md)
     * [oracles](developers/architecture/oracles/README.md)
       * [Oracle Infrastructure](developers/architecture/oracles/index.md)
