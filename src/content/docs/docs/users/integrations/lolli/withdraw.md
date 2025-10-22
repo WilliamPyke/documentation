@@ -1,5 +1,5 @@
 ---
-title: How to Withdraw from Lolli to Mezo
+title: 'Withdraw'
 description: Step-by-step guide for withdrawing sats from Lolli to Mezo
 topic: users
 ---
