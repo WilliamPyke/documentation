@@ -189,7 +189,7 @@ export default defineConfig({
                                     label: 'Lolli',
                                     collapsed: true,
                                     items: [
-                                          'docs/users/integrations/lolli/index',
+                                          'docs/users/integrations/lolli',
                                           'docs/users/integrations/lolli/withdraw',
                                           'docs/users/integrations/lolli/using-mezo',
                                           'docs/users/integrations/lolli/faqs'
