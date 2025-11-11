@@ -271,7 +271,8 @@ export default defineConfig({
                         label: 'Features',
                         collapsed: true,
                         items: [
-                              'docs/developers/features/mezo-pools'
+                              'docs/developers/features/mezo-pools',
+                              'docs/developers/features/tigris'
                         ]
                   },
                   {
@@ -287,7 +288,6 @@ export default defineConfig({
                         collapsed: true,
                         items: [
                               'docs/developers/musd',
-                              'docs/developers/musd-development',
                               'docs/developers/musd/musd-redemptions'
                         ]
                   }
