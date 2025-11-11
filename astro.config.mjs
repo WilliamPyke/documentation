@@ -254,6 +254,13 @@ export default defineConfig({
                         ]
                   },
                   {
+                        label: 'Chains',
+                        collapsed: true,
+                        items: [
+                              'docs/developers/chains'
+                        ]
+                  },
+                  {
                         label: 'Architecture',
                         collapsed: true,
                         items: [
