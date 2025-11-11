@@ -6,7 +6,7 @@ topic: developers
 # How to Redeem MUSD on Mezo
 
 ## Quick Overview
-Redeeming lets you burn 1 MUSD to recieve $1 in BTC (minus a 0.75% redemption fee and gas fees). The system redeems starting from the trove with the lowest collateral ratio above 110%. If the amount of MUSD exceeds a single trove, it will continue to redeem in ascending order of collateraliztion ratio. 
+Redeeming lets you burn 1 MUSD to recieve `$1` in BTC (minus a 0.75% redemption fee and gas fees). The system redeems starting from the trove with the lowest collateral ratio above 110%. If the amount of MUSD exceeds a single trove, it will continue to redeem in ascending order of collateraliztion ratio. 
 
 Troves with collateralization ratios below 110% are eligible for liquidation, and cannot be redeemed against.
 
@@ -100,7 +100,7 @@ Go back to TroveManager → "Write as Proxy" → `redeemCollateral`
 
 **Example: Redeeming 100 MUSD**
 - You burn: 100 MUSD
-- You receive: $99.25 worth of BTC (0.75% fee goes to protocol)
+- You receive: `$99.25` worth of BTC (0.75% fee goes to protocol)
 
 **Formula**: (Your MUSD Amount ÷ BTC Price) × 0.9925 = BTC received
 
@@ -132,7 +132,7 @@ Go back to TroveManager → "Write as Proxy" → `redeemCollateral`
 ## Tips
 
 - **Generate hints immediately before redeeming** - They become stale if someone else redeems first
-- **Use Option A for small amounts** (< $10,000) - The higher gas cost is negligible
+- **Use Option A for small amounts** (< `$10,000`) - The higher gas cost is negligible
 - **Use Option B for large amounts** - Saves significant gas on big redemptions
 - **Set higher maxIterations for larger redemptions**:
   - Small (< 10 troves): 10

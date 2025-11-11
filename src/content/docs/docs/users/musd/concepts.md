@@ -46,7 +46,7 @@ This condition prevents users from borrowing more MUSD than is required by the m
 
 - The BTC price is 100k USD.
 - A user deposits 0.03 BTC as collateral.
-- The user will be able to borrow only up to 2727 MUSD ($0.03 * 100000 / 1.1$) minus any fees, which are included in ICR calculations.
+- The user will be able to borrow only up to 2727 MUSD (`$0.03 * 100000 / 1.1`) minus any fees, which are included in ICR calculations.
 
 ### User maximum borrow amounts
 
@@ -67,7 +67,7 @@ Consider an example where a user wants to borrow 4000 MUSD.
 
 - Their original borrow amount is 4000 MUSD.
 - Gas compensation is 200 MUSD.
-- The origination fee is $0.5\% * 4000 MUSD =20 MUSD$
+- The origination fee is `$0.5% * 4000 MUSD = 20 MUSD`
 
 The principal amount is:
 
@@ -131,9 +131,9 @@ Callers compete to obtain a valid liquidation and earn the reward.
 
 During liquidation, the Stability pool pays the debt and receives the remaining collateral of 99.5%.
 
-As an example, if a user’s debt is 85k MUSD and user deposited 1 BTC as collateral while the price of BTC is 100k USD, the ICR is $100k / 85k = 1.18$ and is still above the MCR. Liquidation cannot occur.
+As an example, if a user’s debt is 85k MUSD and user deposited 1 BTC as collateral while the price of BTC is 100k USD, the ICR is `$100k / 85k = 1.18` and is still above the MCR. Liquidation cannot occur.
 
-If the BTC price drops to \$90k USD, the ICR is now $90k / 85k = 1.06$. This is below the MCR and liquidation can occur.
+If the BTC price drops to \$90k USD, the ICR is now `$90k / 85k = 1.06`. This is below the MCR and liquidation can occur.
 
 If a caller initiates liquidation, the user looses the collateral of 1 BTC but keeps the borrowed 85k MUSD. The liquidation caller receives the following reward:
 
@@ -141,7 +141,7 @@ $$
 \text{0.5\% x 90000 worth of BTC} + \text{200 MUSD} = \text{450 USD worth of BTC + 200 MUSD}. 
 $$
 
-The stability pool looses 85000 MUSD, but it gains $99.5\% * 90000 \text{USD worth of BTC} = 89550 \text{USD worth of BTC}$. In total, the Stability pool gained ~4550 USD worth of BTC. It can then sell the BTC immediately for MUSD and put MUSD back to the pool. To understand stability pool mechanics and scenarios, see the [stability pool](#stability-pooltability pool) section.
+The stability pool loses 85,000 MUSD, but it gains `99.5% * 90,000 USD worth of BTC = 89,550 USD worth of BTC`. In total, the Stability Pool gained ~4,550 USD worth of BTC. It can then sell the BTC immediately for MUSD and put MUSD back to the pool. To understand stability pool mechanics and scenarios, see the [stability pool](#stability-pooltability pool) section.
 
 ## Stability pool
 

@@ -32,7 +32,7 @@ We maintain the **price floor of \$1** through arbitrage, an external USD ↔ BT
 
 The arbitrageur profits `$200` (ignoring fees). This trade **buys** MUSD and **burns** it, causing upward price pressure until the price resets to `$1`.
 
-We maintain a **price ceiling of $1.10** via the minimum 110% collateralization ratio. Imagine that MUSD is trading for `$1.20` on an exchange, and that bitcoin is selling for `1 BTC = $100k`. An arbitrageur with `$100k` could:
+We maintain a **price ceiling of \$1.10** via the minimum 110% collateralization ratio. Imagine that MUSD is trading for `$1.20` on an exchange, and that bitcoin is selling for `1 BTC = $100k`. An arbitrageur with `$100k` could:
 
 1. Buy `1 BTC` (worth `$100k`).
 2. Open a trove with `1 BTC` as collateral and borrow the maximum `90,909 MUSD`.
@@ -209,4 +209,45 @@ async function batchLiquidate(
 
 Any MUSD holder can redeem their tokens for an equivalent value of BTC, which helps maintain the `$1` peg. The system redeems against the trove with the lowest collateral ratio.
 
+For step-by-step instructions and code, see the dedicated guide:
+
+- [MUSD Redemptions](/docs/developers/musd/musd-redemptions/)
+
+## Borrower Risks
+
+-   **Liquidation Risk**: Your collateral can be liquidated if its value falls below 110% of your debt.
+-   **Redemption Risk**: Your collateral can be redeemed to maintain the peg, causing a taxable event and loss of upside exposure.
+-   **Bad Debt**: In extreme cases, bad debt could be socialized across other borrowers.
+
+## Testing
+
+```bash
+# Run all tests
+pnpm test
+
+# Run with gas reporting
+pnpm test:gas
+
+# Run with coverage
+pnpm coverage
 ```
+
+## Key Changes from THUSD
+
+-   **Fixed-Interest Borrowing**: Interest rates are fixed when a trove is opened and can be refinanced.
+-   **Protocol Controlled Value (PCV)**: Manages fees for loan repayment and other system needs.
+-   **EIP-712 Signature Verification**: Allows for gasless transaction authorizations.
+-   **No Special Recovery Mode Liquidations**: Liquidations follow a single process.
+
+## Definitions
+
+-   **Trove**: A collateralized debt position (CDP).
+-   **ICR**: Individual Collateralization Ratio of a single trove.
+-   **TCR**: Total Collateralization Ratio of the entire system.
+-   **Recovery Mode**: Activated if TCR falls below 150%, enforcing stricter borrowing rules.
+
+## Additional Resources
+
+-   **[MUSD Main README](https://github.com/mezo-org/musd/blob/main/README.md)** - Comprehensive architectural overview.
+-   **[Demo Test Suite](https://github.com/mezo-org/musd/blob/main/test/integration/Demo.test.ts)** - Working code examples.
+-   **[MUSD User Guide](/docs/users/musd/)** - End-user documentation.
