@@ -26,17 +26,86 @@
 li,
 p {
   word-break: normal;
-  overflow-wrap: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
-/* Ensure dollar amounts stay together */
+/* Code styling - inline code should wrap, code blocks should scroll */
 code {
-  white-space: nowrap;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  font-style: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+/* Inline code - allow wrapping but prefer keeping together */
+:not(pre) > code {
+  white-space: normal;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  display: inline;
+}
+
+/* Code blocks - add horizontal scroll when needed */
+pre,
+pre code {
+  white-space: pre;
+  overflow-x: auto;
+  overflow-y: hidden;
+  word-break: normal;
+  overflow-wrap: normal;
+  max-width: 100%;
+  display: block;
+}
+
+/* Ensure code blocks don't overflow container */
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent content from overflowing margins */
+.sl-markdown-content,
+main {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Ensure all text elements respect container bounds */
+.sl-markdown-content * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+/* Fix italic/emphasis to use proper font (not cursive/script) */
+em,
+i,
+.sl-markdown-content em,
+.sl-markdown-content i {
+  font-family: var(--sl-font, "RiformaLLWeb-Regular", sans-serif);
+  font-style: italic;
+  font-variant: normal;
+  font-feature-settings: normal;
+}
+
+/* Ensure emphasis doesn't use script/cursive fonts */
+strong,
+b,
+.sl-markdown-content strong,
+.sl-markdown-content b {
+  font-family: var(--sl-font, "RiformaLLWeb-Regular", sans-serif);
+  font-weight: bold;
 }
 
 /* Ensure footer isn't trapped in a stacking context created by Starlight's main pane */
 .main-pane {
   isolation: auto;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 /* Ensure main content/footer stack above left sidebar at tablet/desktop */
