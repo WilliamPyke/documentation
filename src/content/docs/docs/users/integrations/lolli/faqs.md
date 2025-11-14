@@ -17,6 +17,7 @@ Mezo is a permissionless blockchain platform, meaning it is accessible globally 
 ## Why are 30,000 sats needed as minimum amount to withdraw to Mezo?
 
 **Lolli → Mezo:** You can withdraw 0.0003 BTC (30,000 sats) or more from Lolli to Mezo. This minimum ensures that you can buy a Bitrefill gift card on the Mezo Market for at least $25 and have enough sats left over to cover transaction fees.
+
 **Mezo → Bitcoin Layer 1:** Mezo currently requires a minimum of 0.01 BTC (1 million sats) to withdraw back to Bitcoin Layer 1. Until you have 1M sats in your Mezo wallet, you will not be able to withdraw to your Bitcoin L1 wallet.
 
 We are working to reduce the minimum withdrawal amount for Mezo. 
