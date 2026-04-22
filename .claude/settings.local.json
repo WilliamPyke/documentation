@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx lunaria:*)",
+      "Bash(npm install:*)",
+      "Bash(git checkout:*)",
+      "Bash(git:*)",
+      "Bash(npx astro:*)"
+    ]
+  }
+}
