@@ -30,7 +30,7 @@ Bitcoin. BTC is the native gas token on Mezo (with 18 decimals) and the primary 
 
 ## BTC Wallet
 
-A Bitcoin-native wallet used to deposit BTC directly to Mezo. Supported wallets include UniSat, OKX, and Xverse. Supported address formats are Legacy (P2PKH), Native SegWit (P2WPKH), and Nested SegWit (P2SH-P2WPKH). See [Deposit Assets](/docs/users/getting-started/deposit-assets).
+A Bitcoin-native wallet that can sign in to Mezo. Supported wallets include UniSat, OKX, and Xverse. Supported address formats are Legacy (P2PKH), Native SegWit (P2WPKH), and Nested SegWit (P2SH-P2WPKH). BTC wallets could deposit BTC directly to Mezo until October 6, 2026, and can still withdraw to Bitcoin. See [Bridges](/docs/users/mainnet/bridges).
 
 ## Chain ID
 
