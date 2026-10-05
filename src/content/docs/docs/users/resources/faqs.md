@@ -59,7 +59,7 @@ EVM-compatible:
 * Zerion
 * OKX
 
-Bitcoin wallets can no longer deposit to Mezo. Native Bitcoin deposits ended on October 6, 2026. To deposit, use an EVM wallet. Accounts that use a Bitcoin wallet can still withdraw to Bitcoin.
+Bitcoin wallets can no longer deposit to Mezo. Native Bitcoin deposits ended on October 6, 2026. To deposit, use an EVM wallet. If your account uses a Bitcoin wallet, you can move your assets to an EVM wallet on Mezo under **Transact > Send** in the Mezo app (see [Send Assets](/docs/users/passport/send-assets)), or withdraw to Bitcoin.
 
 ## What token is used for transaction fees?
 
